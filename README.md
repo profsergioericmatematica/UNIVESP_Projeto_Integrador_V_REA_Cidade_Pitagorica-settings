@@ -80,6 +80,7 @@ O projeto foi construído com arquitetura Front-end otimizada, dispensando frame
     └── Relatorio_Pitagorica_Teste_de_Bancada_acertando_tudo_sem_pedir_dicas_e_usando_calculadora.txt
     └── Relatorio_Pitagorica_Teste_de_Bancada_errando_tudo_uma_vez.txt
     └── Relatorio_Pitagorica_Teste_do_Spammer_Cliques_no_Vazio.txt
+    └── Análise dos testes de bancada.odt
 ```
 ## ⚙️ Como executar o projeto
 
