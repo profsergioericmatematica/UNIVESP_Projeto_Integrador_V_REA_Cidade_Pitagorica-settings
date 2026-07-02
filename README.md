@@ -56,9 +56,30 @@ O projeto foi construído com arquitetura Front-end otimizada, dispensando frame
 │   └── style.css                                                           # Estilos globais, temas escuros e responsividade
 ├── js/
 │   └── script.js                                                           # Core do jogo: Motor JSON, Levenshtein, Relatório e UI Logic
-├── imagens/                                                                # Assets visuais dos desafios (q1.png a q10.png, etc.)
-└── sons/                                                                   # Feedback auditivo (somAcerto.mp3, somErro.mp3, somVazio.mp3)
-
+├── imagens/                                                              # Assets visuais dos desafios (q1.png a q10.png, etc.)
+│   └── q1.png
+│   └── q21.png
+│   └── q3.png
+│   └── q4.png
+│   └── q6.png
+│   └── q7.png
+│   └── q8.png
+│   └── q10.png
+├── sons/                                                                   # Feedback auditivo (somAcerto.mp3, somErro.mp3, somVazio.mp3)
+│   └── somAcerto.mp3
+│   └── somErro.mp3
+│   └── somVazio.mpe
+├── Questões Prova Paulista de Matematica do 1º Bimestre de 2026
+│   └── 1-serie-dia-2-prova-roxa-1-16.pdf
+│   └── Prova_e_Folha_de_Respostas_Seduc_1_srie_DIA_2__Prova_Roxa-2-5.pdf
+└── Testes de Bancada
+    └── Relatorio_Pitagorica_Teste_Caótico_Completo.txt
+    └── Relatorio_Pitagorica_Teste_das_Respostas_Sujas.txt
+    └── Relatorio_Pitagorica_Teste_de_Bancada_acertando_tudo_pedindo_todas_as_dicas_e_usando_calculadora.txt
+    └── Relatorio_Pitagorica_Teste_de_Bancada_acertando_tudo_sem_pedir_dicas_e_sem_usar_calculadora.txt
+    └── Relatorio_Pitagorica_Teste_de_Bancada_acertando_tudo_sem_pedir_dicas_e_usando_calculadora.txt
+    └── Relatorio_Pitagorica_Teste_de_Bancada_errando_tudo_uma_vez.txt
+    └── Relatorio_Pitagorica_Teste_do_Spammer_Cliques_no_Vazio.txt
 ```
 ## ⚙️ Como executar o projeto
 
