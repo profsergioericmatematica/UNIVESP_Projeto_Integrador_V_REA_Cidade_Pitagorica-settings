@@ -11,7 +11,8 @@
     <div class="header-rea">
         REA - Recurso Educacional Aberto: Cidade Pitagórica
         <small>Projeto Integrador V | Universidade Virtual do Estado de São Paulo - UNIVESP</small>
-
+        <button id="btn-mudo" class="btn-mudo" onclick="alternarSom()" aria-pressed="false" title="Ativar ou desativar os efeitos sonoros do jogo">🔊 Som Ligado</button>
+        
         
     </div>
 
@@ -62,6 +63,7 @@
             <p>Para liberar os recursos de construção, resolva os enigmas estruturais.</p>
 
             <input type="text" id="nome-aluno" placeholder="Digite seu primeiro nome" aria-label="Digite seu primeiro nome" style="width: 80%; margin-bottom: 20px; text-align: center; font-weight: bold;">
+            <div id="feedback-nome-aluno" class="feedback"></div>
             <br>
             <button onclick="iniciarJogo()">Aceitar e Iniciar Nova Missão</button>
 
@@ -665,8 +667,6 @@
 
     </div>
 
-    
-    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <div class="footer-info">

@@ -16,7 +16,9 @@ for(let f=1; f<=15; f++) {
             linhaTempo: [], 
             tempoInicio: null, 
             tempoGastoSegundos: 0, 
-            concluido: false 
+            concluido: false,
+            dicaAutoExibida: false,
+            dicaManual: false
         };
     }
 }   
@@ -227,6 +229,32 @@ const somErro = new Audio('sons/somErro.mp3');
 somErro.onerror = () => { /* ignora */ };
 const somVazio = new Audio('sons/somVazio.mp3');
 somVazio.onerror = () => { /* ignora */ };
+const somLigado = new Audio('sons/somLigado.wav');
+somLigado.onerror = () => { /* ignora */ };
+
+// ================= CONTROLE DE SOM (MUDO) =================
+let somAtivado = (localStorage.getItem('cidadePitagorica_somAtivado') !== 'false');
+
+function tocarSom(audioEl) {
+    if (!somAtivado) return;
+    audioEl.currentTime = 0;
+    audioEl.play();
+}
+
+function alternarSom() {
+    somAtivado = !somAtivado;
+    localStorage.setItem('cidadePitagorica_somAtivado', somAtivado);
+    atualizarBotaoSom();
+    if (somAtivado) tocarSom(somLigado);
+}
+
+function atualizarBotaoSom() {
+    const btn = document.getElementById('btn-mudo');
+    if (!btn) return;
+    btn.textContent = somAtivado ? '🔊 Som Ligado' : '🔇 Som Desligado';
+    btn.setAttribute('aria-pressed', (!somAtivado).toString());
+    btn.classList.toggle('mudo-ativo', !somAtivado);
+}
 
 function compararFracao(inputStr, numEsperado, denEsperado) {
     const limpo = inputStr.replace(/\s/g, ''); 
@@ -331,7 +359,16 @@ function atualizarProgresso(fase, passoConcluido) {
 // ================= INICIO =================
 function iniciarJogo() {
     const inputNome = document.getElementById('nome-aluno').value.trim();
-    if(inputNome === "") { alert("Engenheiro, assine seu nome no projeto!"); document.getElementById('nome-aluno').focus(); return; }
+    const feedNome = document.getElementById('feedback-nome-aluno');
+    if(inputNome === "") {
+        tocarSom(somVazio);
+        if (feedNome) { feedNome.innerHTML = "⚠️ Engenheiro, assine seu nome no projeto!"; feedNome.className = "feedback warning-text"; }
+        document.getElementById('nome-aluno').classList.remove('shake');
+        setTimeout(() => { document.getElementById('nome-aluno').classList.add('shake'); }, 10);
+        document.getElementById('nome-aluno').focus();
+        return;
+    }
+    if (feedNome) { feedNome.innerHTML = ""; feedNome.className = "feedback"; }
     localStorage.removeItem('cidadePitagorica_estado');
     nomeDoAluno = inputNome; dataInicio = new Date().toLocaleString(); dataInicioMS = Date.now(); 
 
@@ -349,7 +386,7 @@ function verificarCampoVazio(idInput, fase, passo, mensagem = "Preencha a respos
     const input = document.getElementById(idInput);
     if (!input) return false;
     if (input.value.trim() === "") {
-        somVazio.play();
+        tocarSom(somVazio);
         const feed = document.getElementById(regrasDoJogo[fase][passo].feedId);
         if (feed) { feed.innerHTML = "⚠️ " + mensagem; feed.className = "feedback warning-text"; }
         return true;
@@ -378,7 +415,7 @@ function validarPasso(fase, passo) {
 
         if (regra.tipo === "numero") {
             const num = parseFloat(valor.replace(',', '.'));
-            passou = (num === regra.esp);
+            passou = (!isNaN(num) && Math.abs(num - regra.esp) < 0.01);
         } else if (regra.tipo === "range") {
             const num = parseFloat(valor.replace(',', '.'));
             passou = (num >= regra.esp[0] && num <= regra.esp[1]);
@@ -400,7 +437,7 @@ function validarPasso(fase, passo) {
 }
 
 function sucesso(fase, passo, proxPasso, textoFeed) {
-    somAcerto.play();
+    tocarSom(somAcerto);
     const regra = regrasDoJogo[fase][passo];
     let inputs = [];
     if (regra.id) inputs.push(document.getElementById(regra.id));
@@ -463,15 +500,17 @@ function sucesso(fase, passo, proxPasso, textoFeed) {
 }
 
 function erro(fase, passo, textoFeed, silenciarSom = false) {
-    if (!silenciarSom) somErro.play();
+    if (!silenciarSom) tocarSom(somErro);
     const regra = regrasDoJogo[fase][passo];
     
     let inputs = [];
     if (regra.id) inputs.push(document.getElementById(regra.id));
     if (regra.id2) inputs.push(document.getElementById(regra.id2));
 
+    let errosNoPasso = 0;
     if (logDiagnostico[fase] && logDiagnostico[fase][passo]) {
         logDiagnostico[fase][passo].erros++;
+        errosNoPasso = logDiagnostico[fase][passo].erros;
         let valoresDigitados = [];
         inputs.forEach(inp => { if(inp && inp.value.trim() !== "") valoresDigitados.push(inp.value); });
         
@@ -485,6 +524,14 @@ function erro(fase, passo, textoFeed, silenciarSom = false) {
 
     const feed = document.getElementById(regra.feedId);
     if (feed) { feed.innerHTML = "❌ " + textoFeed; feed.className = "feedback error-text"; }
+
+    // Nudge pedagógico: após 3 erros seguidos no mesmo passo, mostra a dica
+    // automaticamente em vez de esperar o aluno clicar em "Dica" por conta própria.
+    const jaMostrouDicaAuto = logDiagnostico[fase][passo].dicaAutoExibida;
+    if (errosNoPasso >= 3 && !jaMostrouDicaAuto) {
+        logDiagnostico[fase][passo].dicaAutoExibida = true;
+        setTimeout(() => { mostrarDica(fase, passo, true); }, 900);
+    }
 }
 
 function irParaFaseGenerica(faseAtual, proxFase) {
@@ -504,30 +551,8 @@ function irParaFaseGenerica(faseAtual, proxFase) {
     }, 100);
 }
 
-function testarFase() {
-    const numFase = parseInt(document.getElementById('input-teste-fase').value);
-    const faseElement = document.getElementById('fase-' + numFase);
-
-    if (faseElement && numFase >= 1 && numFase <= 15) {
-        document.getElementById('tela-inicio').style.display = "none";
-        document.getElementById('container-progresso').style.display = "block";
-        atualizarProgresso(numFase, 0);
-        faseElement.style.display = "block"; faseElement.classList.add("fade-in");
-        iniciarPassoLog(numFase, 1);
-
-        document.querySelector('.game-container').scrollTop = 0;
-        setTimeout(() => { 
-            const regra = regrasDoJogo[numFase][1];
-            if(regra && regra.id) {
-                const firstInput = document.getElementById(regra.id);
-                if(firstInput) firstInput.focus();
-            }
-        }, 100);
-    } else { alert("⚠️ A Fase " + numFase + " não existe!"); }
-}
-
 // ================= MOTOR DE DICAS (COM LOG) =================
-function mostrarDica(fase, passo) {
+function mostrarDica(fase, passo, veioAutomatico = false) {
     const dicionarioDicas = {
         '1-1': 'Observe a altura (30 cm) e a parte inclinada (60 cm). Qual dos esboços coloca essas medidas nos lugares corretos?',
         '1-2': 'O lado que fica de frente para o ângulo reto recebe um nome especial. Começa com H.',
@@ -581,14 +606,31 @@ function mostrarDica(fase, passo) {
     const feed = document.getElementById(regra.feedId);
     
     if (feed && dicionarioDicas[chave]) {
-        feed.innerHTML = "💡 <strong>Dica:</strong> " + dicionarioDicas[chave];
+        const prefixo = veioAutomatico
+            ? "🤔 <strong>Notei que você tentou algumas vezes. Que tal uma dica?</strong><br>💡 "
+            : "💡 <strong>Dica:</strong> ";
+        feed.innerHTML = prefixo + dicionarioDicas[chave];
         feed.className = "feedback-dica fade-in";
         if(logDiagnostico[fase] && logDiagnostico[fase][passo]){
             logDiagnostico[fase][passo].usouDica = true;
             logDiagnostico[fase][passo].dicaExata = dicionarioDicas[chave];
-            registrarAcaoLog(fase, passo, `💡 Solicitou Dica: "${dicionarioDicas[chave]}"`);
+            if (!veioAutomatico) logDiagnostico[fase][passo].dicaManual = true;
+            const origem = veioAutomatico ? "🤖 Dica sugerida automaticamente (3+ erros)" : "💡 Solicitou Dica";
+            registrarAcaoLog(fase, passo, `${origem}: "${dicionarioDicas[chave]}"`);
         }
     }
+}
+
+// ================= ACESSIBILIDADE: ARIA-LIVE NOS FEEDBACKS =================
+// Faz leitores de tela anunciarem automaticamente quando um feedback muda
+// (acerto, erro, aviso de campo vazio ou dica), sem o aluno precisar navegar
+// manualmente até o texto.
+function ativarAriaLiveEmFeedbacks() {
+    const elementosFeedback = document.querySelectorAll('.feedback, .feedback-dica');
+    elementosFeedback.forEach(el => {
+        el.setAttribute('aria-live', 'polite');
+        el.setAttribute('role', 'status');
+    });
 }
 
 // ================= AUTO-BIND DO HTML PARA O NOVO MOTOR =================
@@ -722,7 +764,7 @@ function gerarEBaixarRelatorio() {
         }}
     };
 
-    let totalAcertosPrimeira = 0, totalDicas = 0, maxErros = -1;
+    let totalAcertosPrimeira = 0, totalDicas = 0, totalDicasManual = 0, totalDicasAutomaticas = 0, maxErros = -1;
     let passoCriticoStr = "Nenhum (aluno não cometeu erros)";
     let tempoSessaoSegundos = Math.floor((Date.now() - dataInicioMS) / 1000);
 
@@ -732,12 +774,14 @@ function gerarEBaixarRelatorio() {
             if(log && log.concluido) {
                 if(log.erros === 0) totalAcertosPrimeira++;
                 if(log.usouDica) totalDicas++;
+                if(log.dicaManual) totalDicasManual++;
+                if(log.dicaAutoExibida) totalDicasAutomaticas++;
                 if(log.erros > maxErros && log.erros > 0) { maxErros = log.erros; passoCriticoStr = `Fase ${f} (Passo ${p}) com ${log.erros} erro(s)`; }
             }
         }
     }
 
-    let conteudo = `======================================================================\n        RELATÓRIO DIAGNÓSTICO COMPLETO - CIDADE PITAGÓRICA\n======================================================================\n\n👤 ALUNO(A): ${nomeDoAluno}\n\n----------------------------------------------------------------------\n📈 RESUMO GERAL DO DESEMPENHO (DASHBOARD)\n----------------------------------------------------------------------\n⏱️  Tempo Total da Sessão: ${formatarSegundos(tempoSessaoSegundos)}\n🎯 Acertos de Primeira (Sem erros): ${totalAcertosPrimeira} passo(s)\n💡 Total de Dicas Solicitadas: ${totalDicas} vez(es)\n⚠️  Ponto Crítico de Aprendizagem: ${passoCriticoStr}\n\n----------------------------------------------------------------------\n🧠 REFLEXÃO METACOGNITIVA (DIÁRIO DE OBRA)\n----------------------------------------------------------------------\n1. Desafio mais complexo e como superou:\nR: ${m1}\n\n2. Eficácia das dicas utilizadas:\nR: ${m2}\n\n3. Aplicação do conhecimento no dia a dia:\nR: ${m3}\n\n----------------------------------------------------------------------\n📊 MAPEAMENTO PEDAGÓGICO DETALHADO E CRONOLOGIA\n----------------------------------------------------------------------\n`;
+    let conteudo = `======================================================================\n        RELATÓRIO DIAGNÓSTICO COMPLETO - CIDADE PITAGÓRICA\n======================================================================\n\n👤 ALUNO(A): ${nomeDoAluno}\n\n----------------------------------------------------------------------\n📈 RESUMO GERAL DO DESEMPENHO (DASHBOARD)\n----------------------------------------------------------------------\n⏱️  Tempo Total da Sessão: ${formatarSegundos(tempoSessaoSegundos)}\n🎯 Acertos de Primeira (Sem erros): ${totalAcertosPrimeira} passo(s)\n💡 Total de Dicas Solicitadas: ${totalDicas} vez(es)\n   🙋 Pedidas pelo aluno: ${totalDicasManual} vez(es)\n   🤖 Sugeridas pelo sistema (após 3+ erros): ${totalDicasAutomaticas} vez(es)\n⚠️  Ponto Crítico de Aprendizagem: ${passoCriticoStr}\n\n----------------------------------------------------------------------\n🧠 REFLEXÃO METACOGNITIVA (DIÁRIO DE OBRA)\n----------------------------------------------------------------------\n1. Desafio mais complexo e como superou:\nR: ${m1}\n\n2. Eficácia das dicas utilizadas:\nR: ${m2}\n\n3. Aplicação do conhecimento no dia a dia:\nR: ${m3}\n\n----------------------------------------------------------------------\n📊 MAPEAMENTO PEDAGÓGICO DETALHADO E CRONOLOGIA\n----------------------------------------------------------------------\n`;
 
     for(let f = 1; f <= 15; f++) {
         conteudo += `\n======================================================================\n▶ FASE ${f} - ${bancoDetalhado[f].contexto}\n======================================================================\n`;
@@ -766,7 +810,8 @@ function gerarEBaixarRelatorio() {
 // ================= INICIALIZAÇÃO E AUTO-LOAD DA PÁGINA =================
 window.addEventListener('DOMContentLoaded', () => {
     inicializarMotorValidacao(); // Roda a Mágica: Conecta todo o HTML ao Objeto JSON "regrasDoJogo"
-
+    atualizarBotaoSom();
+    ativarAriaLiveEmFeedbacks();
         if (localStorage.getItem('cidadePitagorica_estado')) {
         const btnContinuar = document.createElement('button');
         btnContinuar.innerHTML = "Continuar Sessão Salva 🔄";

@@ -38,6 +38,22 @@ body {
     margin-top: 4px;
 }
 
+.btn-mudo {
+    margin-top: 10px;
+    background-color: #718093;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.btn-mudo:hover { background-color: #95a5a6; transform: scale(1.05); }
+.btn-mudo.mudo-ativo { background-color: #e84118; }
+.btn-mudo.mudo-ativo:hover { background-color: #c23616; }
+
 .footer-info {
     width: 100%;
     max-width: 700px;
