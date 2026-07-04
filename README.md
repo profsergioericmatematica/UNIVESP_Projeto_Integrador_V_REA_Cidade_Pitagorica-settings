@@ -1,4 +1,4 @@
-# 🏗️ Missão: Cidade Pitagórica
+## 🏗️ Missão: Cidade Pitagórica
 
 ![Versão](https://img.shields.io/badge/version-1.0-blue.svg)
 ![Licença](https://img.shields.io/badge/license-MIT-green.svg)
@@ -12,7 +12,7 @@
 
 ---
  
-📖 ##Índice
+📖 ## Índice
 
 - [Sobre o Projeto](#-sobre-o-projeto)
 - [Objetivo Pedagógico](#-objetivo-pedagógico)
@@ -24,11 +24,11 @@
 - [Como utilizar](#-como-utilizar)
 - [Testes de Bancada](#-testes-de-bancada)
 - [Equipe de Desenvolvimento](#-equipe-de-desenvolvimento)
-- [Licença](#-licença)
+- [Licença](#-licenca)
 
 ---
 
-🧩 ##Sobre o Projeto
+🧩 ## Sobre o Projeto
 
 A **Cidade Pitagórica** é um Recurso Educacional Aberto (REA) que combina **gamificação**, **diagnóstico formativo** e **acessibilidade**. O aluno assume o papel de um(a) engenheiro(a) responsável por concluir as obras de uma cidade, resolvendo 15 fases de problemas matemáticos contextualizados. Cada fase é composta por passos que exigem a aplicação do Teorema de Pitágoras, operações com números reais, radiciação, frações, geometria plana e conversão de unidades.
 
@@ -36,7 +36,7 @@ O sistema é **auto-suficiente** e **offline**, rodando inteiramente no navegado
 
 ---
 
-🎯 ##Objetivo Pedagógico
+🎯 ## Objetivo Pedagógico
 
 - **Diagnosticar** lacunas de aprendizagem em habilidades matemáticas essenciais.
 - **Consolidar** conhecimentos por meio de problemas práticos e feedback imediato.
@@ -45,7 +45,7 @@ O sistema é **auto-suficiente** e **offline**, rodando inteiramente no navegado
 
 ---
 
-#📚 ##Mapeamento com a Prova Paulista e Habilidades da BNCC
+📚 ## Mapeamento com a Prova Paulista e Habilidades da BNCC
 
 O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Prova Paulista do 1º Bimestre de 2026** (1ª Série do Ensino Médio). Cada fase do jogo foi pensada para trabalhar as habilidades específicas avaliadas nas questões da prova oficial.
 
@@ -57,7 +57,7 @@ O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Pr
 
 ---
 
-🚀 ##Funcionalidades
+🚀 ## Funcionalidades
 
 | Funcionalidade | Descrição |
 | :--- | :--- |
@@ -77,7 +77,7 @@ O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Pr
 
 ---
 
-🛠️ ##Tecnologias usadas
+🛠️ ## Tecnologias usadas
 
 - **HTML5** – Estrutura semântica e acessível.
 - **CSS3** – Flexbox, Grid, animações keyframes, media queries.
@@ -86,7 +86,7 @@ O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Pr
 
 ---
 
-📂 ##Estrutura de Arquivos
+📂 ## Estrutura de Arquivos
 
 ```text
 /
@@ -124,7 +124,7 @@ O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Pr
 ```
 ---
 
-⚙️ ##Como executar o projeto
+⚙️ ## Como executar o projeto
 
 Como o projeto é feito puramente em tecnologias web client-side (sem back-end ou necessidade de banco de dados), a execução é imediata:
 
@@ -142,7 +142,7 @@ git clone [https://github.com/profsergioericmatematica/UNIVESP_Projeto_Integrado
 
 ---
 
-👨‍🏫 ##Como utilizar
+👨‍🏫 ## Como utilizar
 
 **Para o Aluno**
 
@@ -166,7 +166,7 @@ git clone [https://github.com/profsergioericmatematica/UNIVESP_Projeto_Integrado
 
 ---
 
-🧪 ##Testes de Bancada
+🧪 ## Testes de Bancada
 
 O sistema foi validado por meio de **9 testes de bancada** que simularam diferentes perfis de uso. Os testes abrangeram:
 
@@ -184,7 +184,7 @@ Os relatórios completos estão disponíveis na pasta Testes de Bancada/.
 
 ---
 
-👨 ##Equipe de Desenvolvimento
+👨 ## Equipe de Desenvolvimento
 
 **Projeto desenvolvido em colaboração pelos discentes da UNIVESP:**
 
@@ -206,7 +206,7 @@ Vitor Correa Uberti
 
 ---
 
-📄 ##Licença
+📄 ## Licença
 
 Este projeto está licenciado sob a **Licença MIT** – permitindo o uso, a modificação e a distribuição livre, para fins educacionais e comerciais, desde que mantidos os créditos aos autores originais.
 
