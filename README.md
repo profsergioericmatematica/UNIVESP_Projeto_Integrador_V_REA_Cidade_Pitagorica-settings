@@ -14,17 +14,17 @@
  
 ## 📖 Índice
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Objetivo Pedagógico](#objetivo-pedagógico)
-- [Mapeamento com a Prova Paulista e Habilidades da BNCC](#mapeamento-com-a-prova-paulista-e-habilidades-da-bncc)
-- [Funcionalidades](#funcionalidades)
-- [Tecnologias](#tecnologias)
-- [Estrutura de Arquivos](#estrutura-de-arquivos)
-- [Como Executar](#como-executar-o-projeto)
-- [Como Utilizar](#como-utilizar)
-- [Testes de Bancada](#testes-de-bancada)
-- [Equipe de Desenvolvimento](#equipe-de-desenvolvimento)
-- [Licença](#licenca)
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Objetivo Pedagógico](#-objetivo-pedagógico)
+- [Mapeamento com a Prova Paulista e Habilidades da BNCC](#-mapeamento-com-a-prova-paulista-e-habilidades-da-bncc)
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologias](#-tecnologias)
+- [Estrutura de Arquivos](#-estrutura-de-arquivos)
+- [Como Executar](#-como-executar-o-projeto)
+- [Como Utilizar](#-como-utilizar)
+- [Testes de Bancada](#-testes-de-bancada)
+- [Equipe de Desenvolvimento](#-equipe-de-desenvolvimento)
+- [Licença](#-licenca)
 
 ---
 
