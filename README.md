@@ -23,7 +23,7 @@
 - [Como Executar](#-como-executar)
 - [Como Utilizar](#-como-utilizar)
 - [Testes de Bancada](#-testes-de-bancada)
-- [Equipe](#-equipe)
+- [Equipe de Desenvolvimento](#-equipe_de_desenvolvimento)
 - [Licença](#-licença)
 
 ---
@@ -161,6 +161,8 @@ git clone [https://github.com/profsergioericmatematica/UNIVESP_Projeto_Integrado
 
 - Analise os relatórios gerados para identificar padrões de erro e planejar intervenções.
 
+---
+
 ## 🧪 Testes de Bancada
 
 O sistema foi validado por meio de **9 testes de bancada** que simularam diferentes perfis de uso. Os testes abrangeram:
@@ -176,6 +178,8 @@ O sistema foi validado por meio de **9 testes de bancada** que simularam diferen
 **Resultado:** 100% de coerência entre o comportamento simulado e os relatórios gerados, comprovando a robustez do sistema.
 
 Os relatórios completos estão disponíveis na pasta Testes de Bancada/.
+
+---
 
 ## 👨 💻 Equipe de Desenvolvimento
 
