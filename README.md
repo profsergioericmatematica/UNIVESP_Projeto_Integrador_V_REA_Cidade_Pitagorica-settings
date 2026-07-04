@@ -3,51 +3,93 @@
 ![Versão](https://img.shields.io/badge/version-1.0-blue.svg)
 ![Licença](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-Concluído-success.svg)
+![Plataforma](https://img.shields.io/badge/platform-Web-blueviolet.svg)
+![Linguagem](https://img.shields.io/badge/JavaScript-ES6%2B-yellow.svg)
 
-**Cidade Pitagórica** é um Recurso Educacional Aberto (REA) em formato de web game gamificado, desenvolvido como parte do Projeto Integrador V da **Universidade Virtual do Estado de São Paulo (UNIVESP)**. 
+> **Recurso Educacional Aberto (REA) gamificado para o ensino do Teorema de Pitágoras e conceitos matemáticos correlatos.**
 
-Focado na **Educação Baseada em Evidências**, o jogo atua como uma intervenção pedagógica digital voltada para alunos do Ensino Médio, utilizando dados e problemáticas inspiradas na Prova Paulista (1º Bimestre de 2026).
+**Cidade Pitagórica** é um jogo digital interativo desenvolvido como parte do **Projeto Integrador V** da **Universidade Virtual do Estado de São Paulo (UNIVESP)**. O projeto utiliza uma abordagem de **Educação Baseada em Evidências**, transformando dados da Prova Paulista (1º Bimestre/2026) em desafios pedagógicos significativos.
+
+---
+
+## 📖 Índice
+
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Objetivo Pedagógico](#-objetivo-pedagógico)
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologias](#-tecnologias)
+- [Estrutura de Arquivos](#-estrutura-de-arquivos)
+- [Como Executar](#-como-executar)
+- [Como Utilizar](#-como-utilizar)
+- [Testes de Bancada](#-testes-de-bancada)
+- [Equipe](#-equipe)
+- [Licença](#-licença)
+
+---
+
+## 🧩 Sobre o Projeto
+
+A **Cidade Pitagórica** é um Recurso Educacional Aberto (REA) que combina **gamificação**, **diagnóstico formativo** e **acessibilidade**. O aluno assume o papel de um(a) engenheiro(a) responsável por concluir as obras de uma cidade, resolvendo 15 fases de problemas matemáticos contextualizados. Cada fase é composta por passos que exigem a aplicação do Teorema de Pitágoras, operações com números reais, radiciação, frações, geometria plana e conversão de unidades.
+
+O sistema é **auto-suficiente** e **offline**, rodando inteiramente no navegador, sem necessidade de servidor ou conexão com a internet (exceto para carregar o MathJax, que pode ser substituído por versão local).
 
 ---
 
 ## 🎯 Objetivo Pedagógico
 
-O jogo transforma a avaliação formativa em uma experiência interativa. O aluno assume o papel de um(a) Engenheiro(a) Chefe encarregado de finalizar as obras do Canteiro Central de uma cidade. Durante as 15 fases, o estudante resolve problemas práticos que exigem habilidades matemáticas mapeadas pela **Base Nacional Comum Curricular (BNCC)**, incluindo:
-* Teorema de Pitágoras e relações métricas em triângulos retângulos.
-* Identificação de números Racionais e Irracionais (Raízes não exatas e Dízimas Periódicas).
-* Geometria Plana (Cálculo de Área e Perímetro de Polígonos).
-* Operações com Frações e Potenciação (Expoentes negativos e fracionários).
+- **Diagnosticar** lacunas de aprendizagem em habilidades matemáticas essenciais.
+- **Consolidar** conhecimentos por meio de problemas práticos e feedback imediato.
+- **Promover** a autonomia do estudante com ferramentas de apoio (calculadora, dicas contextuais).
+- **Gerar** relatórios detalhados para subsidiar o planejamento de intervenções pedagógicas.
+
+### Habilidades da BNCC abordadas
+
+| Código | Descrição | Fases |
+| :--- | :--- | :--- |
+| **EF09MA13** | Relações métricas no triângulo retângulo | 1–6 |
+| **EF09MA14** | Aplicação prática do Teorema de Pitágoras | 2–6 |
+| **EF08MA02** | Radiciação exata e reconhecimento de raízes não exatas | 3, 6, 7, 9, 13 |
+| **EF09MA02** | Reconhecimento de números irracionais | 6, 7 |
+| **EF09MA03** | Simplificação de radicais | 4, 5, 6 |
+| **EF07MA27** | Cálculos de medidas em polígonos | 4 |
+| **EF07MA33** | Elementos do círculo | 5 |
+| **EF06MA17** | Elementos de poliedros | 9 |
+| **EF08MA05** | Dízimas periódicas e frações geratrizes | 10, 11 |
+| **EF07MA08** | Operações com frações | 10–12 |
+| **EF06MA14** | Multiplicação com decimais | 8 |
+| **EF09MA01** | Localização de números na reta numérica | 14 |
+| **EF06MA24** | Resolução de problemas com tempo | 15 |
 
 ---
 
-## 🚀 Funcionalidades e Destaques Técnicos
+## 🚀 Funcionalidades
 
-O projeto foi construído com arquitetura Front-end otimizada, dispensando frameworks pesados, garantindo execução leve em qualquer dispositivo:
-
-* 🧠 **Motor de Validação Inteligente (Data-Driven):** O jogo é gerido por um "Dicionário de Regras" (Objeto JSON Mestre) que processa as 15 fases dinamicamente, eliminando redundância de código e facilitando a adição de novas fases.
-* 🔤 **Tolerância a Erros de Digitação (Algoritmo de Levenshtein):** O sistema não pune o aluno por erros ortográficos simples (ex: digitar "ipotenusa" em vez de "hipotenusa"). A distância de Levenshtein avalia a intenção da resposta, focando no aprendizado matemático.
-* 💾 **Persistência de Dados (Auto-Save):** Utilização da API `localStorage` para salvamento automático. Se o aluno fechar o navegador sem querer, ele pode retomar a missão exatamente da fase em que parou, mantendo as caixas anteriores bloqueadas.
-* 📊 **Sistema de Tracking e Relatório Diagnóstico (TXT):** O jogo rastreia de forma invisível toda a jornada do estudante. Ao final, gera e baixa automaticamente um dossiê para o professor contendo:
-  * Tempo total da sessão e tempo gasto em cada passo.
-  * Cronologia de ações segundo a segundo (ex: *"Errou -> Pediu Dica -> Usou Calculadora -> Acertou"*).
-  * Texto exato da dica solicitada e quantitativo de erros (identificando o gargalo de aprendizagem).
-  * Mapeamento direto com as habilidades da BNCC.
-* 🖩 **Calculadora Científica Embutida:** Ferramenta modal com "espião" de eventos que registra no log do professor se (e como) a calculadora foi utilizada pelo aluno.
-* 📱 **Responsividade Extrema:** CSS moderno projetado com media queries avançadas que adaptam a UI mesmo quando o teclado virtual de smartphones toma grande parte da tela.
-* 🔊 **Feedback Audiovisual:** Sons de recompensa e alertas integrados para respostas corretas, erradas ou tentativas vazias, além de animações de "shake" e "fade-in" para orientação espacial.
+| Funcionalidade | Descrição |
+| :--- | :--- |
+| 🧠 **Motor de Validação Inteligente** | Dicionário JSON central que gerencia as 15 fases, permitindo fácil expansão. |
+| 🔤 **Tolerância a Erros (Levenshtein)** | Aceita variações ortográficas, foco no conteúdo matemático, não na digitação. |
+| 💾 **Auto-Save (LocalStorage)** | Progresso salvo automaticamente; o aluno pode retomar de onde parou. |
+| 📊 **Relatório Diagnóstico (TXT)** | Gera dossiê completo com logs, erros, tempo, dicas e mapeamento BNCC. |
+| 🖩 **Calculadora Científica Embutida** | Com operações básicas, raiz quadrada, cúbica e potência; uso registrado. |
+| 💡 **Sistema de Dicas Contextuais** | Dicas manuais (botão) e automáticas (após 2 erros), com registro de uso. |
+| 📱 **Responsividade Extrema** | Adapta-se a smartphones, tablets e desktops, inclusive com teclado virtual ativo. |
+| 🔊 **Feedback Audiovisual** | Sons e animações para acertos, erros e tentativas vazias. |
+| ♿ **Acessibilidade** | Atributos ARIA, foco controlado em modais, suporte a teclado (`Esc` e `Tab`). |
+| 📚 **Guia do Educador e Revisão Teórica** | Modais com plano de aula, justificativa pedagógica e resumo teórico. |
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias
 
-* **HTML5** (Semântico e acessível)
-* **CSS3** (Flexbox, Grid, Animações Keyframes e Media Queries)
-* **JavaScript Vanilla (ES6+)** (Manipulação de DOM, LocalStorage, Áudio API e Algoritmos de String)
-* **MathJax** (Renderização profissional de fórmulas e equações matemáticas na web)
+- **HTML5** – Estrutura semântica e acessível.
+- **CSS3** – Flexbox, Grid, animações keyframes, media queries.
+- **JavaScript (ES6+)** – Manipulação de DOM, LocalStorage, Audio API, algoritmos de string.
+- **MathJax** – Renderização de fórmulas matemáticas (LaTeX).
 
 ---
 
 ## 📂 Estrutura de Arquivos
+
 
 ```text
 /
@@ -98,6 +140,44 @@ git clone [https://github.com/profsergioericmatematica/UNIVESP_Projeto_Integrado
 
 * **Nota:** Para gerar e baixar o relatório diagnóstico final .txt, garanta que o navegador tenha permissão para baixar arquivos.
 
+## 👨‍🏫 Como Utilizar
+
+**Para o Aluno**
+
+1. Digite seu primeiro nome na tela inicial.
+
+2. Resolva os desafios das 15 fases.
+
+3. Use a calculadora e as dicas sempre que precisar.
+
+4. Ao final, responda às perguntas metacognitivas e baixe seu relatório.
+
+5. Entregue o arquivo .txt ao professor.
+
+**Para o Professor**
+
+- Utilize o Guia do Educador (botão no cabeçalho) para conhecer a fundamentação pedagógica.
+
+- Consulte a Revisão Teórica para apoiar os alunos com dificuldades.
+
+- Analise os relatórios gerados para identificar padrões de erro e planejar intervenções.
+
+## 🧪 Testes de Bancada
+
+O sistema foi validado por meio de **9 testes de bancada** que simularam diferentes perfis de uso. Os testes abrangeram:
+
+- Acertos e erros (1 ou 2 tentativas por passo).
+
+- Uso ou não da calculadora.
+
+- Solicitação manual de dicas ou ativação automática (após 2 erros).
+
+- Entradas com erros ortográficos e espaços extras.
+
+**Resultado:** 100% de coerência entre o comportamento simulado e os relatórios gerados, comprovando a robustez do sistema.
+
+Os relatórios completos estão disponíveis na pasta Testes de Bancada/.
+
 ## 👨 💻 Equipe de Desenvolvimento
 
 **Projeto desenvolvido em colaboração pelos discentes da UNIVESP:**
@@ -120,5 +200,5 @@ Vitor Correa Uberti
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a Licença MIT - permitindo uso, modificação e distribuição de forma livre e aberta para fins educacionais e comerciai
+Este projeto está licenciado sob a **Licença MIT** – permitindo o uso, a modificação e a distribuição livre, para fins educacionais e comerciais, desde que mantidos os créditos aos autores originais.
 
