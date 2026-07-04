@@ -44,21 +44,15 @@ O sistema é **auto-suficiente** e **offline**, rodando inteiramente no navegado
 
 ### Habilidades da BNCC abordadas
 
-| Código | Descrição | Fases |
-| :--- | :--- | :--- |
-| **EF09MA13** | Relações métricas no triângulo retângulo | 1–6 |
-| **EF09MA14** | Aplicação prática do Teorema de Pitágoras | 2–6 |
-| **EF08MA02** | Radiciação exata e reconhecimento de raízes não exatas | 3, 6, 7, 9, 13 |
-| **EF09MA02** | Reconhecimento de números irracionais | 6, 7 |
-| **EF09MA03** | Simplificação de radicais | 4, 5, 6 |
-| **EF07MA27** | Cálculos de medidas em polígonos | 4 |
-| **EF07MA33** | Elementos do círculo | 5 |
-| **EF06MA17** | Elementos de poliedros | 9 |
-| **EF08MA05** | Dízimas periódicas e frações geratrizes | 10, 11 |
-| **EF07MA08** | Operações com frações | 10–12 |
-| **EF06MA14** | Multiplicação com decimais | 8 |
-| **EF09MA01** | Localização de números na reta numérica | 14 |
-| **EF06MA24** | Resolução de problemas com tempo | 15 |
+## 📚 Mapeamento com a Prova Paulista e Habilidades da BNCC
+
+O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Prova Paulista do 1º Bimestre de 2026** (1ª Série do Ensino Médio). Cada fase do jogo foi pensada para trabalhar as habilidades específicas avaliadas nas questões da prova oficial.
+
+| Código BNCC | Descrição da Habilidade | Fases do Jogo | Questões da Prova Paulista |
+| :--- | :--- | :--- | :--- |
+| **EM13MAT308** | Aplicar as relações métricas, incluindo as leis do seno e do cosseno ou as noções de congruência e semelhança, para resolver e elaborar problemas que envolvem triângulos, em variados contextos. | 1, 2, 3, 4, 5, 6 | 1, 2, 3, 4, 6 |
+| **EM13MAT103** | Interpretar e compreender textos científicos ou divulgados pelas mídias, que empregam unidades de medida de diferentes grandezas e as conversões possíveis entre elas. | 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 | 5, 7, 8, 9, 10, 11, 12, 13, 14, 15 |
+
 
 ---
 
@@ -77,6 +71,8 @@ O sistema é **auto-suficiente** e **offline**, rodando inteiramente no navegado
 | ♿ **Acessibilidade** | Atributos ARIA, foco controlado em modais, suporte a teclado (`Esc` e `Tab`). |
 | 📚 **Guia do Educador e Revisão Teórica** | Modais com plano de aula, justificativa pedagógica e resumo teórico. |
 
+
+**Nota:** A Fase 6 (Iluminação da Piscina) aborda ambas as habilidades, pois envolve o cálculo da diagonal pelo Teorema de Pitágoras (EM13MAT308) e a classificação do número resultante como irracional (EM13MAT103).
 ---
 
 ## 🛠️ Tecnologias
