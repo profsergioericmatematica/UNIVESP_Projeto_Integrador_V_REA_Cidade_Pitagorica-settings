@@ -18,10 +18,10 @@
 - [Objetivo Pedagógico](#-objetivo-pedagógico)
 - [Mapeamento com a Prova Paulista e Habilidades da BNCC](#-mapeamento-com-a-prova-paulista-e-habilidades-da-bncc)
 - [Funcionalidades](#-funcionalidades)
-- [Tecnologias](#-tecnologias)
+- [Tecnologias usadas](#-tecnologias-usadas)
 - [Estrutura de Arquivos](#-estrutura-de-arquivos)
-- [Como Executar](#-como-executar-o-projeto)
-- [Como Utilizar](#-como-utilizar)
+- [Como executar o projeto](#-como-executar-o-projeto)
+- [Como utilizar](#-como-utilizar)
 - [Testes de Bancada](#-testes-de-bancada)
 - [Equipe de Desenvolvimento](#-equipe-de-desenvolvimento)
 - [Licença](#-licenca)
@@ -77,7 +77,7 @@ O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Pr
 
 ---
 
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias usadas
 
 - **HTML5** – Estrutura semântica e acessível.
 - **CSS3** – Flexbox, Grid, animações keyframes, media queries.
@@ -122,6 +122,7 @@ O REA foi desenvolvido como intervenção pedagógica a partir dos dados da **Pr
     └── Análise dos testes de bancada.odt
 
 ```
+---
 
 ## ⚙️ Como executar o projeto
 
@@ -141,7 +142,7 @@ git clone [https://github.com/profsergioericmatematica/UNIVESP_Projeto_Integrado
 
 ---
 
-## 👨‍🏫 Como Utilizar
+## 👨‍🏫 Como utilizar
 
 **Para o Aluno**
 
