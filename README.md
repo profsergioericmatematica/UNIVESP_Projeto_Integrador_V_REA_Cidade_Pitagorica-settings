@@ -24,7 +24,7 @@
 - [Como utilizar](#-como-utilizar)
 - [Testes de Bancada](#-testes-de-bancada)
 - [Equipe de Desenvolvimento](#-equipe-de-desenvolvimento)
-- [Licença](#-licenca)
+- [Licença](#-licença)
 
 ---
 
