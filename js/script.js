@@ -986,8 +986,29 @@ function gerarEBaixarRelatorio() {
     document.body.appendChild(link); link.click(); document.body.removeChild(link);
     localStorage.removeItem('cidadePitagorica_estado');
 
-    document.getElementById('tela-relatorio').innerHTML = `<h1 style="text-align: center; font-size: 40px; color: #f1c40f;">🎉 JOGO CONCLUÍDO! 🎉</h1><p style="text-align: center; font-size: 18px; color: white;">O seu relatório foi baixado para o seu dispositivo.</p><p style="text-align: center; font-size: 16px; color: #bdc3c7;">Entregue o arquivo .txt ao seu professor. Muito obrigado por jogar!</p>`;
+    document.getElementById('tela-relatorio').innerHTML = `
+        <h1 style="text-align: center; font-size: 40px; color: #f1c40f;">🎉 JOGO CONCLUÍDO! 🎉</h1>
+        <p style="text-align: center; font-size: 18px; color: white;">O seu relatório foi baixado para o seu dispositivo.</p>
+        <p style="text-align: center; font-size: 16px; color: #bdc3c7;">Por favor, anexe o arquivo .txt baixado e envie para o e-mail do professor usando o botão abaixo.</p>
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="enviarRelatorioPorEmail()" style="background-color: #3498db; color: white; padding: 15px 30px; font-size: 18px; width: 100%; border-radius: 8px; cursor: pointer; border: none; font-weight: bold;">Enviar Relatório por E-mail 📧</button>
+        </div>
+    `;
 }
+
+// ================= ENVIO POR E-MAIL =================
+function enviarRelatorioPorEmail() {
+   const destinatario = "1800422@aluno.univesp.br";
+    const assunto = encodeURIComponent("Relatório - Cidade Pitagórica");
+    const corpo = encodeURIComponent(
+        `Olá, professor(a),\n\nSegue em anexo o meu relatório de desempenho no jogo "Cidade Pitagórica".\n\nAluno(a): ${nomeDoAluno}\n\nAtenciosamente.`
+    );
+    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${destinatario}&su=${assunto}&body=${corpo}`;
+    window.open(url, '_blank');
+}
+
+
+    
 
 // ================= INICIALIZAÇÃO E AUTO-LOAD DA PÁGINA =================
 window.addEventListener('DOMContentLoaded', () => {
